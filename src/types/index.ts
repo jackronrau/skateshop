@@ -29,7 +29,7 @@ export interface FooterItem {
   }[]
 }
 
-export type MainNavItem = NavItemWithChildren
+export type MainNavItem = NavItemWithChildren 
 
 export type SidebarNavItem = NavItemWithChildren
 

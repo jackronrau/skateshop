@@ -6,7 +6,7 @@ import { AuthDropdown } from "@/components/layouts/auth-dropdown"
 import { MainNav } from "@/components/layouts/main-nav"
 import { MobileNav } from "@/components/layouts/mobile-nav"
 import { ProductsCombobox } from "@/components/products-combobox"
-
+import { ModeToggle } from "./mode-toggle"
 interface SiteHeaderProps {
   user: User | null
 }
@@ -21,6 +21,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
           <nav className="flex items-center space-x-2">
             <ProductsCombobox />
             <CartSheet />
+            <ModeToggle />
             <AuthDropdown user={user} />
           </nav>
         </div>

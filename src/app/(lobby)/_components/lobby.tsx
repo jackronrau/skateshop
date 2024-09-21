@@ -49,22 +49,6 @@ export async function Lobby({
         className="mx-auto items-center gap-2 text-center"
         withPadding
       >
-        <Link
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noreferrer"
-          className="animate-fade-up"
-          style={{ animationDelay: "0.10s", animationFillMode: "both" }}
-        >
-          <Badge
-            aria-hidden="true"
-            variant="secondary"
-            className="rounded-full px-3.5 py-1.5"
-          >
-            <Icons.gitHub className="mr-2 size-3.5" aria-hidden="true" />
-            {githubStars} stars on GitHub
-          </Badge>
-        </Link>
         <PageHeaderHeading
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
