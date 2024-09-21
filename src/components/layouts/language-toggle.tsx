@@ -1,6 +1,6 @@
 "use client"
 
-import { GlobeIcon } from "@radix-ui/react-icons"
+import { GlobeIcon, CheckIcon } from "@radix-ui/react-icons"
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/lib/i18nNavigation';
 
@@ -17,7 +17,6 @@ export function LanguageToggle() {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-  console.log("locale", locale);
 
   const handleChange = (value: Locales) => {
     router.push(pathname, { locale: value });
@@ -35,7 +34,8 @@ export function LanguageToggle() {
       <DropdownMenuContent align="end">
         {
           localeConfig.locales.map(item => <DropdownMenuItem key={item.id} onClick={() => handleChange(item.id)}>
-            <span>{item.name}</span>
+            {locale === item.id && <CheckIcon />}
+            <span className={locale !== item.id ? 'pl-4' : "pl-1"}>{item.name}</span>
           </DropdownMenuItem>)
         }
       </DropdownMenuContent>
