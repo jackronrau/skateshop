@@ -12,7 +12,24 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme();
+  const modes = [
+    {
+      theme: "light",
+      name: "Light",
+      icon: SunIcon,
+    },
+    {
+      theme: "dark",
+      name: "Dark",
+      icon: MoonIcon,
+    },
+    {
+      theme: "system",
+      name: "System",
+      icon: LaptopIcon,
+    }
+  ]
 
   return (
     <DropdownMenu>
@@ -24,18 +41,12 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          <SunIcon className="mr-2 size-4" />
-          <span>Light</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <MoonIcon className="mr-2 size-4" />
-          <span>Dark</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          <LaptopIcon className="mr-2 size-4" />
-          <span>System</span>
-        </DropdownMenuItem>
+        {
+          modes.map(mode => <DropdownMenuItem key={mode.theme} onClick={() => setTheme(mode.theme)}>
+            <mode.icon className="mr-2 size-4" />
+            <span>{mode.name}</span>
+          </DropdownMenuItem>)
+        }
       </DropdownMenuContent>
     </DropdownMenu>
   )

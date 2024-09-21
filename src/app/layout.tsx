@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next"
 import { env } from "@/env.js"
 import { ClerkProvider } from "@clerk/nextjs"
-
+import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import "@/styles/globals.css"
 
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
-import { siteConfig } from "@/config/site"
+import { localeConfig, siteConfig } from "@/config/site"
 import { fontHeading } from "@/lib/fonts"
 import { absoluteUrl, cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
@@ -67,13 +68,21 @@ export const viewport: Viewport = {
 }
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode,
+  params: { locale: string }
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export function generateStaticParams() {
+  return localeConfig.locales.map(_ => ({ locale: _.id }))
+}
+export default function RootLayout({ children, params }: RootLayoutProps) {
+  console.log("params.locale", params.locale);
+  unstable_setRequestLocale(params.locale);
+  const messages = useMessages();
+
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={params.locale} suppressHydrationWarning>
         <head />
         <body
           className={cn(
@@ -83,17 +92,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontHeading.variable
           )}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <TailwindIndicator />
-            <Analytics />
-          </ThemeProvider>
-          <Toaster />
+          <NextIntlClientProvider
+            locale={params.locale}
+            messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <TailwindIndicator />
+              <Analytics />
+            </ThemeProvider>
+            <Toaster />
+          </NextIntlClientProvider>
         </body>
       </html>
     </ClerkProvider>

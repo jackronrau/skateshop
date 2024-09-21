@@ -13,7 +13,6 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components"
-
 interface NewsletterWelcomeEmailProps {
   firstName?: string
   fromEmail: string

@@ -13,6 +13,16 @@ const links = {
   calDotCom: "https://cal.com/sadmann7",
 }
 
+export const localeConfig = {
+  defaultLocale: 'en',
+  localePrefix: "as-needed",
+  locales: [
+    { id: 'en', name: 'English' },
+    { id: 'zh', name: '简体中文' },
+  ]
+} as const;
+export type Locales = typeof localeConfig.locales[number]["id"]
+
 export const siteConfig = {
   name: "Skateshop",
   description:
@@ -170,3 +180,4 @@ export const siteConfig = {
     },
   ] satisfies FooterItem[],
 }
+
