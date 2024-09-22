@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import createMiddleware from 'next-intl/middleware'
 import { localeConfig } from "./config/site";
-
+import { functions } from "./config/function";
 const intlMiddleware = createMiddleware({
   locales: localeConfig.locales.map(_ => _.id),
   localePrefix: localeConfig.localePrefix,
@@ -10,7 +10,7 @@ const intlMiddleware = createMiddleware({
 
 const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"])
 export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) {
+  if (functions.auth && isProtectedRoute(req)) {
     const url = new URL(req.nextUrl.origin)
 
     auth().protect({

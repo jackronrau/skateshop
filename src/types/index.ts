@@ -14,6 +14,7 @@ export interface NavItem {
   icon?: keyof typeof Icons
   label?: string
   description?: string
+  protected?: boolean
 }
 
 export interface NavItemWithChildren extends NavItem {
@@ -29,7 +30,7 @@ export interface FooterItem {
   }[]
 }
 
-export type MainNavItem = NavItemWithChildren 
+export type MainNavItem = NavItemWithChildren
 
 export type SidebarNavItem = NavItemWithChildren
 
@@ -37,7 +38,7 @@ export interface SearchParams {
   [key: string]: string | string[] | undefined
 }
 
-export interface UploadedFile<T = unknown> extends ClientUploadedFileData<T> {}
+export interface UploadedFile<T = unknown> extends ClientUploadedFileData<T> { }
 
 export interface StoredFile {
   id: string

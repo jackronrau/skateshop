@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/layouts/mobile-nav"
 import { ProductsCombobox } from "@/components/products-combobox"
 import { ModeToggle } from "./mode-toggle"
 import { LanguageToggle } from "./language-toggle"
+import { functions } from "@/config/function"
 interface SiteHeaderProps {
   user: User | null
 }
@@ -24,7 +25,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             <CartSheet />
             <LanguageToggle />
             <ModeToggle />
-            <AuthDropdown user={user} />
+            {functions.auth && <AuthDropdown user={user} />}
           </nav>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { useTranslations } from 'next-intl';
 import { siteConfig } from "@/config/site"
 import { type getGithubStars } from "@/lib/queries/github"
 import type { getCategories, getFeaturedProducts } from "@/lib/queries/product"
@@ -34,7 +33,6 @@ export async function Lobby({
   categoriesPromise,
   storesPromise,
 }: LobbyProps) {
-  const t = useTranslations();
   // @see the "Parallel data fetching" docs: https://nextjs.org/docs/app/building-your-application/data-fetching/patterns#parallel-data-fetching
   const [githubStars, products, categories, stores] = await Promise.all([
     githubStarsPromise,
@@ -54,7 +52,7 @@ export async function Lobby({
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
-          Foundation for your commerce platform {t('test')}
+          Foundation for your commerce platform
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"

@@ -1,0 +1,38 @@
+{
+  "auth": {
+    "email": "电子邮箱",
+    "emailPlaceholder": "rodneymullen180@gmail.com",
+    "password": "密码",
+    "passwordPlaceholder": "**********",
+    "confirmPassword": "确认密码",
+    "resetPassword": "重置密码",
+    "resetPasswordSr": "继续进行密码重置验证",
+    "signIn": "登录",
+    "signInSr": "登录到您的账户",
+    "signUp": "注册",
+    "signUpDescription": "选择您喜欢的注册方式",
+    "signUpSr": "注册您的账户",
+    "logOut": "退出登录",
+    "logOutSr": "退出您的账户",
+    "signOut": "退出",
+    "signOutDescription": "您确定要退出吗？",
+    "continueButton": "继续",
+    "continueVerificationSr": "继续进行邮箱验证",
+    "checkEmailTitle": "检查您的邮箱",
+    "checkEmailDescription": "我们已向您发送了一个6位数的验证码。",
+    "oneTimePassword": "一次性密码",
+    "oneTimePasswordDescription": "请输入发送到您邮箱的6位数验证码。",
+    "verificationCode": "验证码",
+    "createAccount": "创建账户",
+    "createAccountSr": "创建您的账户",
+    "dontHaveAccount": "还没有账户？",
+    "alreadyHaveAccount": "已经有账户了？",
+    "orContinueWith": "或继续使用",
+    "resetPasswordDescription": "输入您的电子邮箱地址，我们将向您发送验证码",
+    "verifyEmail": "验证邮箱",
+    "verifyEmailDescription": "验证您的电子邮箱地址以完成账户创建"
+  },
+  "common": {
+    "goBack": "返回"
+  }
+}
