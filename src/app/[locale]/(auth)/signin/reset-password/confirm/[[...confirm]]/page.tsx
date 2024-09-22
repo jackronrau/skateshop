@@ -9,22 +9,25 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Shell } from "@/components/shell"
-import { ResetPasswordConfirmForm } from "@/app/(auth)/_components/reset-password-confirm-form"
+import { useTranslations } from "next-intl"
+import { ResetPasswordConfirmForm } from "../../../../_components/reset-password-confirm-form"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Reset Password",
   description: "Enter your email to reset your password",
+  robots: { index: false, follow: false },
 }
 
 export default function ResetPasswordConfirmPage() {
+  const t = useTranslations("auth")
   return (
     <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Reset password</CardTitle>
+          <CardTitle className="text-2xl">{t("resetPassword")}</CardTitle>
           <CardDescription>
-            Enter your email address and we will send you a verification code
+            {t("resetPasswordDescription")}
           </CardDescription>
         </CardHeader>
         <CardContent>

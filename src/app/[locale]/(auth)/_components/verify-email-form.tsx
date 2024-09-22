@@ -19,12 +19,14 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useTranslations } from "next-intl"
 import { Icons } from "@/components/icons"
 
 type Inputs = z.infer<typeof verifyEmailSchema>
 
 export function VerifyEmailForm() {
   const router = useRouter()
+  const t = useTranslations("auth")
   const { isLoaded, signUp, setActive } = useSignUp()
   const [loading, setLoading] = React.useState(false)
 
@@ -70,7 +72,7 @@ export function VerifyEmailForm() {
           name="code"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Verification Code</FormLabel>
+              <FormLabel>{t("verificationCode")}</FormLabel>
               <FormControl>
                 <Input
                   placeholder="169420"
@@ -92,8 +94,8 @@ export function VerifyEmailForm() {
               aria-hidden="true"
             />
           )}
-          Create account
-          <span className="sr-only">Create account</span>
+          {t("continueButton")}
+          <span className="sr-only">{t("continueVerificationSr")}</span>
         </Button>
       </form>
     </Form>

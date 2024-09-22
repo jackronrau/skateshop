@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation"
 import { useSignIn } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import type { z } from "zod"
 
 import { showErrorToast } from "@/lib/handle-error"
 import { checkEmailSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button" 
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -26,6 +27,7 @@ type Inputs = z.infer<typeof checkEmailSchema>
 
 export function ResetPasswordForm() {
   const router = useRouter()
+  const t = useTranslations("auth")
   const { isLoaded, signIn } = useSignIn()
   const [loading, setLoading] = React.useState(false)
 
@@ -71,7 +73,7 @@ export function ResetPasswordForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="rodneymullen180@gmail.com" {...field} />
+                <Input placeholder={t("emailPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -84,9 +86,9 @@ export function ResetPasswordForm() {
               aria-hidden="true"
             />
           )}
-          Continue
+          {t("continueButton")}
           <span className="sr-only">
-            Continue to reset password verification
+            {t("resetPasswordSr")}
           </span>
         </Button>
       </form>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useSignIn } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import type { z } from "zod"
 
@@ -34,7 +35,8 @@ export function ResetPasswordConfirmForm() {
   const router = useRouter()
   const { isLoaded, signIn, setActive } = useSignIn()
   const [loading, setLoading] = React.useState(false)
-
+  const t = useTranslations("auth")
+  const tCommon = useTranslations("common")
   // react-hook-form
   const form = useForm<Inputs>({
     resolver: zodResolver(resetPasswordSchema),
@@ -83,7 +85,7 @@ export function ResetPasswordConfirmForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("password")}</FormLabel>
               <FormControl>
                 <PasswordInput placeholder="*********" {...field} />
               </FormControl>
@@ -96,7 +98,7 @@ export function ResetPasswordConfirmForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>{t("confirmPassword")}</FormLabel>
               <FormControl>
                 <PasswordInput placeholder="*********" {...field} />
               </FormControl>
@@ -109,7 +111,7 @@ export function ResetPasswordConfirmForm() {
           name="code"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>One-Time Password</FormLabel>
+              <FormLabel>{t("oneTimePassword")}</FormLabel>
               <FormControl>
                 <InputOTP maxLength={6} {...field}>
                   <InputOTPGroup>
@@ -123,7 +125,7 @@ export function ResetPasswordConfirmForm() {
                 </InputOTP>
               </FormControl>
               <FormDescription>
-                Please enter the 6-digit code sent to your email.
+                {t("checkEmailDescription")}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -136,7 +138,7 @@ export function ResetPasswordConfirmForm() {
             className="w-full"
             onClick={() => router.back()}
           >
-            Go back
+            {tCommon("goBack")}
           </Button>
           <Button className="w-full" disabled={loading}>
             {loading && (
@@ -145,8 +147,8 @@ export function ResetPasswordConfirmForm() {
                 aria-hidden="true"
               />
             )}
-            Reset password
-            <span className="sr-only">Reset password</span>
+            {t("resetPassword")}
+            <span className="sr-only">{t("resetPassword")}</span>
           </Button>
         </div>
       </form>

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 import { getStoresByUserId } from "@/lib/queries/store"
 import { getCachedUser, getUserPlanMetrics } from "@/lib/queries/user"
 
-import { SidebarProvider } from "../../../components/layouts/sidebar-provider"
+import { SidebarProvider } from "@/components/layouts/sidebar-provider"
 import { DashboardHeader } from "../store/[storeId]/_components/dashboard-header"
 import { DashboardSidebar } from "../store/[storeId]/_components/dashboard-sidebar"
 import { DashboardSidebarSheet } from "../store/[storeId]/_components/dashboard-sidebar-sheet"

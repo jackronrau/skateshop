@@ -14,21 +14,9 @@ import {
 export function ModeToggle() {
   const { setTheme } = useTheme();
   const modes = [
-    {
-      theme: "light",
-      name: "Light",
-      icon: SunIcon,
-    },
-    {
-      theme: "dark",
-      name: "Dark",
-      icon: MoonIcon,
-    },
-    {
-      theme: "system",
-      name: "System",
-      icon: LaptopIcon,
-    }
+    { theme: "light", name: "Light", icon: SunIcon, },
+    { theme: "dark", name: "Dark", icon: MoonIcon, },
+    { theme: "system", name: "System", icon: LaptopIcon, }
   ]
 
   return (

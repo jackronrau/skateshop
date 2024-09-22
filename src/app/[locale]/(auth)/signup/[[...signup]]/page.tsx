@@ -11,23 +11,26 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Shell } from "@/components/shell"
-import { OAuthSignIn } from "@/app/(auth)/_components/oauth-signin"
-import { SignUpForm } from "@/app/(auth)/_components/signup-form"
+import { useTranslations } from "next-intl"
+import { OAuthSignIn } from "../../_components/oauth-signin"
+import { SignUpForm } from "../../_components/signup-form"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Sign Up",
   description: "Sign up for an account",
+  robots: { index: false, follow: false },
 }
 
 export default function SignUpPage() {
+  const t = useTranslations("auth")
   return (
     <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Sign up</CardTitle>
+          <CardTitle className="text-2xl">{t("signUp")}</CardTitle>
           <CardDescription>
-            Choose your preferred sign up method
+            {t("signUpDescription")}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -38,7 +41,7 @@ export default function SignUpPage() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+                {t("orContinueWith")}
               </span>
             </div>
           </div>
@@ -46,13 +49,13 @@ export default function SignUpPage() {
         </CardContent>
         <CardFooter>
           <div className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+            {t("alreadyHaveAccount")}{" "}
             <Link
               aria-label="Sign in"
               href="/signin"
               className="text-primary underline-offset-4 transition-colors hover:underline"
             >
-              Sign in
+              {t("signIn")}
             </Link>
           </div>
         </CardFooter>

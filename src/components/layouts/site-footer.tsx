@@ -17,7 +17,8 @@ export function SiteFooter() {
               <span className="sr-only">Home</span>
             </Link>
           </section>
-          <section className="grid flex-1 grid-cols-1 gap-10 xxs:grid-cols-2 sm:grid-cols-4">
+          <section className={`grid flex-1 gap-10 grid-cols-1 xxs:grid-cols-2 sm:grid-cols-${Math.min(siteConfig.footerNav.length, 4)}`}
+          >
             {siteConfig.footerNav.map((item) => (
               <div key={item.title} className="space-y-3">
                 <h4 className="text-base font-medium">{item.title}</h4>

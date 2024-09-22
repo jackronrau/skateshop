@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { useSignIn } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -28,7 +29,7 @@ export function SignInForm() {
   const router = useRouter()
   const { isLoaded, signIn, setActive } = useSignIn()
   const [loading, setLoading] = React.useState(false)
-
+  const t = useTranslations("common")
   // react-hook-form
   const form = useForm<Inputs>({
     resolver: zodResolver(authSchema),
@@ -72,11 +73,11 @@ export function SignInForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("email")}</FormLabel>
               <FormControl>
                 <Input
                   type="text"
-                  placeholder="rodneymullen180@gmail.com"
+                  placeholder={t("emailPlaceholder")}
                   {...field}
                 />
               </FormControl>
@@ -89,9 +90,9 @@ export function SignInForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("password")}</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="**********" {...field} />
+                <PasswordInput placeholder={t("passwordPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -104,8 +105,8 @@ export function SignInForm() {
               aria-hidden="true"
             />
           )}
-          Sign in
-          <span className="sr-only">Sign in</span>
+          {t("signInButton")}
+          <span className="sr-only">{t("signInButtonSr")}</span>
         </Button>
       </form>
     </Form>

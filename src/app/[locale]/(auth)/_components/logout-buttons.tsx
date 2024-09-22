@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { SignOutButton } from "@clerk/nextjs"
+import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
@@ -11,7 +12,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 export function LogOutButtons() {
   const router = useRouter()
   const mounted = useMounted()
-
+  const t = useTranslations("auth");
+  const tCommon = useTranslations("common");
   return (
     <div className="flex w-full flex-col-reverse items-center gap-2 sm:flex-row">
       <Button
@@ -20,16 +22,16 @@ export function LogOutButtons() {
         className="w-full"
         onClick={() => router.back()}
       >
-        Go back
-        <span className="sr-only">Previous page</span>
+        {tCommon("goBack")}
+        <span className="sr-only">{tCommon("goBackSr")}</span>
       </Button>
       {mounted ? (
         <SignOutButton
           redirectUrl={`${window.location.origin}/?redirect=false`}
         >
           <Button size="sm" className="w-full">
-            Log out
-            <span className="sr-only">Log out</span>
+            {t("logOut")}
+            <span className="sr-only">{t("logOutSr")}</span>
           </Button>
         </SignOutButton>
       ) : (
@@ -39,7 +41,7 @@ export function LogOutButtons() {
             "w-full bg-muted text-muted-foreground"
           )}
         >
-          Log out
+          {t("logOut")}
         </Skeleton>
       )}
     </div>

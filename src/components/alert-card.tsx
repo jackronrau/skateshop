@@ -43,17 +43,7 @@ export function AlertCard({
             <AlertDescription className="text-muted-foreground">
               {description}
             </AlertDescription>
-          ) : (
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <AlertDescription>Follow along on</AlertDescription>
-              <Link
-                href={siteConfig.links.x}
-                className="transition-colors hover:text-foreground"
-              >
-                X
-              </Link>
-            </div>
-          )}
+          ) : null}
         </div>
       )}
     </Alert>

@@ -12,14 +12,17 @@ import { localeConfig } from '@/config/site';
 // 1. Automatically sync on push to the `main` branch
 // 2. Run manually the workflow on GitHub Actions
 // 3. Every 24 hours at 5am, the workflow will run automatically
-
+const locales = ["common", "auth"]
 // Using internationalization in Server Components
 export default getRequestConfig(async ({ locale }) => {
-  console.log("locale", locale);
   // Validate that the incoming `locale` parameter is valid
   if (!localeConfig.locales.map(_ => _.id).includes(locale)) notFound();
-
+  const messages = await Promise.all(locales.map(async filename => {
+    return {
+      [filename]: (await import(`../locales/${locale}/${filename}.json`)).default,
+    }
+  }));
   return {
-    messages: (await import(`../locales/${locale}.json`)).default,
+    messages: messages.reduce((acc, m) => ({ ...acc, ...m }), {}),
   };
 });

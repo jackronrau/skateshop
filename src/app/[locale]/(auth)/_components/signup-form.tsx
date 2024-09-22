@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { useSignUp } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -29,7 +30,7 @@ export function SignUpForm() {
   const router = useRouter()
   const { isLoaded, signUp } = useSignUp()
   const [loading, setLoading] = React.useState(false)
-
+  const t = useTranslations("auth.signUp")
   // react-hook-form
   const form = useForm<Inputs>({
     resolver: zodResolver(authSchema),
@@ -56,8 +57,8 @@ export function SignUpForm() {
       })
 
       router.push("/signup/verify-email")
-      toast.message("Check your email", {
-        description: "We sent you a 6-digit verification code.",
+      toast.message(t("checkEmailTitle"), {
+        description: t("checkEmailDescription"),
       })
     } catch (err) {
       showErrorToast(err)
@@ -74,9 +75,9 @@ export function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("email")}</FormLabel>
               <FormControl>
-                <Input placeholder="rodneymullen180@gmail.com" {...field} />
+                <Input placeholder={t("emailPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,7 +88,7 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("password")}</FormLabel>
               <FormControl>
                 <PasswordInput placeholder="**********" {...field} />
               </FormControl>
@@ -102,8 +103,8 @@ export function SignUpForm() {
               aria-hidden="true"
             />
           )}
-          Continue
-          <span className="sr-only">Continue to email verification page</span>
+          {t("continueButton")}
+          <span className="sr-only">{t("continueVerificationSr")}</span>
         </Button>
       </form>
     </Form>

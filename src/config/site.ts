@@ -2,16 +2,27 @@ import type { FooterItem, MainNavItem } from "@/types"
 
 import { productConfig } from "@/config/product"
 import { slugify } from "@/lib/utils"
-
+import { env } from "@/env"
 export type SiteConfig = typeof siteConfig
 
-const links = {
-  x: "https://twitter.com/sadmann17",
-  github: "https://github.com/sadmann7/skateshop",
-  githubAccount: "https://github.com/sadmann7",
-  discord: "https://discord.com/users/sadmann7",
-  calDotCom: "https://cal.com/sadmann7",
-}
+const contacts = [
+  {
+    title: "X",
+    href: "https://twitter.com/sadmann17",
+  },
+  {
+    title: "GitHub",
+    href: "https://github.com/sadmann7/skateshop",
+  },
+  {
+    title: "Discord",
+    href: "https://discord.com/users/sadmann7",
+  },
+  {
+    title: "cal.com",
+    href: "https://cal.com/sadmann7",
+  },
+]
 
 export const localeConfig = {
   defaultLocale: 'en',
@@ -24,12 +35,11 @@ export const localeConfig = {
 export type Locales = typeof localeConfig.locales[number]["id"]
 
 export const siteConfig = {
-  name: "Skateshop",
+  name: "Skateshop1",
   description:
     "An open source e-commerce skateshop build with everything new in Next.js.",
-  url: "https://skateshop.sadmn.com",
-  ogImage: "https://skateshop.sadmn.com/opengraph-image.png",
-  links,
+  url: env.NEXT_PUBLIC_APP_URL,
+  ogImage: `${env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`,
   mainNav: [
     {
       title: "Lobby",
@@ -53,6 +63,11 @@ export const siteConfig = {
           items: [],
         },
       ],
+    },
+    {
+      title: "Blog",
+      href: "/blog",
+      description: "Read our latest blog posts.",
     },
     ...productConfig.categories.map((category) => ({
       title: category.name,
@@ -130,54 +145,12 @@ export const siteConfig = {
     },
     {
       title: "Social",
-      items: [
-        {
-          title: "X",
-          href: links.x,
-          external: true,
-        },
-        {
-          title: "GitHub",
-          href: links.githubAccount,
-          external: true,
-        },
-        {
-          title: "Discord",
-          href: links.discord,
-          external: true,
-        },
-        {
-          title: "cal.com",
-          href: links.calDotCom,
-          external: true,
-        },
-      ],
-    },
-    {
-      title: "Lofi",
-      items: [
-        {
-          title: "beats to study to",
-          href: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
-          external: true,
-        },
-        {
-          title: "beats to chill to",
-          href: "https://www.youtube.com/watch?v=rUxyKA_-grg",
-          external: true,
-        },
-        {
-          title: "a fresh start",
-          href: "https://www.youtube.com/watch?v=rwionZbOryo",
-          external: true,
-        },
-        {
-          title: "coffee to go",
-          href: "https://www.youtube.com/watch?v=2gliGzb2_1I",
-          external: true,
-        },
-      ],
-    },
+      items: contacts.map((contact) => ({
+        title: contact.title,
+        href: contact.href,
+        external: true,
+      }))
+    }
   ] satisfies FooterItem[],
 }
 

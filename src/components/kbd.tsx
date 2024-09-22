@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
+
 import { cn } from "@/lib/utils"
 
 const kbdVariants = cva(
@@ -20,7 +21,7 @@ const kbdVariants = cva(
 
 export interface KbdProps
   extends React.ComponentPropsWithoutRef<"kbd">,
-    VariantProps<typeof kbdVariants> {
+  VariantProps<typeof kbdVariants> {
   /**
    * The title of the `abbr` element inside the `kbd` element.
    * @default undefined

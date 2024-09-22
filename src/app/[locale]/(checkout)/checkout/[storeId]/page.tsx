@@ -18,6 +18,7 @@ import { CartLineItems } from "@/components/checkout/cart-line-items"
 import { CheckoutForm } from "@/components/checkout/checkout-form"
 import { CheckoutShell } from "@/components/checkout/checkout-shell"
 import { Shell } from "@/components/shell"
+import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -107,7 +108,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
                 aria-hidden="true"
               />
               <div className="block font-medium transition group-hover:hidden">
-                Skateshop
+                {siteConfig.name}
               </div>
               <div className="hidden font-medium transition group-hover:block">
                 Back

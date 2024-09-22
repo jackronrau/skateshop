@@ -6,22 +6,25 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
+import { useTranslations } from "next-intl"
 import { Shell } from "@/components/shell"
-import { LogOutButtons } from "@/app/(auth)/_components/logout-buttons"
+import { LogOutButtons } from "../../_components/logout-buttons"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Sign out",
   description: "Sign out of your account",
+  robots: { index: false, follow: false },
 }
 
 export default function SignOutPage() {
+  const t = useTranslations("auth")
   return (
     <Shell className="max-w-md">
       <PageHeader className="text-center">
-        <PageHeaderHeading size="sm">Sign out</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("signOut")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Are you sure you want to sign out?
+          {t("signOutDescription")}
         </PageHeaderDescription>
       </PageHeader>
       <LogOutButtons />

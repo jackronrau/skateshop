@@ -23,14 +23,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "nextjs",
-    "react",
-    "react server components",
-    "skateshop",
-    "skateboarding",
-    "kickflip",
-  ],
   authors: [
     {
       name: "sadmann7",
@@ -76,7 +68,6 @@ export function generateStaticParams() {
   return localeConfig.locales.map(_ => ({ locale: _.id }))
 }
 export default function RootLayout({ children, params }: RootLayoutProps) {
-  console.log("params.locale", params.locale);
   unstable_setRequestLocale(params.locale);
   const messages = useMessages();
 
